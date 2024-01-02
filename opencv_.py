@@ -62,13 +62,19 @@ while run:
                     number_faces = len(num_faces)
                     print(f"Number of faces detected: {number_faces}")
                     cv2.imwrite(img_path,frame)
-                    print("picture taken sucess")
-    
-'''
-    if ret == True:
-        if cv2.waitKey(1) & 0xFF==ord("c"):
-            cv2.imwrite('capture.jpg', frame)  
-            print("picture taken sucess")
-'''
+                    print("picture taken sucess \n "+img_path)
+
+                    #cropped
+                    for (x, y, w, h) in faces:
+                        # Draw rectangle on full frame
+                        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                        # Extract face ROI 
+                        face_roi = frame[y:y+h, x:x+w]
+                        # Save cropped face image
+                        filename = now.strftime('%Y%m%d_%H%M%S') + '_cropped.jpg' 
+                        img_path = os.path.join(img_folder, filename)  
+                        cv2.imwrite(img_path, face_roi)
+                        print("cropped image saved \n "+img_path)
+
 pygame.quit()
 cap.release()
