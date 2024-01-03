@@ -57,10 +57,21 @@ def draw_init():
 
 # 遊戲迴圈
 show_init = True
-running = True
+run = True
 while run:
-    
-    # Read frame from webcam
+    if show_init:
+        draw_init()
+        show_init=False
+
+    clock.tick(FPS)
+
+    for event in pygame.event.get():
+        if event.type ==pygame.QUIT:
+            run = False
+        elif event.type ==pygame.KEYDOWN:
+            if event.key==pygame.K_SPACE:
+                show_init=False
+            # Read frame from webcam
     ret, frame = cap.read()
 
     h, w = frame.shape[:2] 
@@ -68,66 +79,55 @@ while run:
 
     if not ret:
         print("Error getting frame from webcam")
-    # OpenCV image processing
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, 1.1, 5)
+        # OpenCV image processing
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, 1.1, 5)
 
-    num_faces = face_cascade.detectMultiScale(gray)
+        num_faces = face_cascade.detectMultiScale(gray)
 
-    for (x,y,w,h) in faces:
-        cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2) 
+        for (x,y,w,h) in faces:
+            cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2) 
 
-    # Convert to Pygame surface and display    
-    pygame_frame = pygame.image.frombuffer(frame.tobytes(), frame.shape[1::-1],"BGR")
-    screen.blit(pygame_frame, (0,0))
-    pygame.display.flip()
+        # Convert to Pygame surface and display    
+        pygame_frame = pygame.image.frombuffer(frame.tobytes(), frame.shape[1::-1],"BGR")
+        screen.blit(pygame_frame, (0,0))
+        pygame.display.flip()
 
 
-    img_folder = 'webcam_pics'
-    if not os.path.exists(img_folder):
-        os.mkdir(img_folder)
-    now = datetime.datetime.now()
+        img_folder = 'webcam_pics'
+        if not os.path.exists(img_folder):
+            os.mkdir(img_folder)
+        now = datetime.datetime.now()
 
-    # Check events 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_c:
-                # Capture image with faces marked 
-                if frame is None:
-                    print("Error, no webcam frame to save")
-                else: 
-                    filename = now.strftime('%Y%m%d_%H%M%S') + '.jpg' 
-                    img_path = os.path.join(img_folder, filename)  
-                    number_faces = len(num_faces)
-                    print(f"Number of faces detected: {number_faces}")
-                    cv2.imwrite(img_path,frame)
-                    print("picture taken sucess \n "+img_path)
-
-                    #cropped
-                    for (x, y, w, h) in faces:
-                        # Draw rectangle on full frame
-                        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-                        # Extract face ROI 
-                        face_roi = frame[y:y+h, x:x+w]
-                        # Save cropped face image
-                        filename = now.strftime('%Y%m%d_%H%M%S') + '_cropped.jpg' 
+        # Check events 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_c:
+                    # Capture image with faces marked 
+                    if frame is None:
+                        print("Error, no webcam frame to save")
+                    else: 
+                        filename = now.strftime('%Y%m%d_%H%M%S') + '.jpg' 
                         img_path = os.path.join(img_folder, filename)  
-                        cv2.imwrite(img_path, face_roi)
-                        print("cropped image saved \n "+img_path)
+                        number_faces = len(num_faces)
+                        print(f"Number of faces detected: {number_faces}")
+                        cv2.imwrite(img_path,frame)
+                        print("picture taken sucess \n "+img_path)
 
-while running:
-#    if show_init:
-#        draw_init()
-#       show_init=False
-    clock.tick(FPS)
-#取得輸入
-#    for event in pygame.event.get():
-#        if event.type ==pygame.QUIT:
-#           running = False
+                        #cropped
+                        for (x, y, w, h) in faces:
+                            # Draw rectangle on full frame
+                            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                                # Extract face ROI 
+                            face_roi = frame[y:y+h, x:x+w]
+                            # Save cropped face image
+                            filename = now.strftime('%Y%m%d_%H%M%S') + '_cropped.jpg' 
+                            img_path = os.path.join(img_folder, filename)  
+                            cv2.imwrite(img_path, face_roi)
+                            print("cropped image saved \n "+img_path)
 
-    pygame.display.update()
 
 pygame.quit()
 sys.exit()  # 確保程式完全退出
