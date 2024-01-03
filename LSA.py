@@ -40,18 +40,19 @@ def draw_init():
             elif event.type == pygame.KEYUP:
                 waiting = False
 
-show_init = True
-running = True
+
 
 # 遊戲迴圈
+show_init = True
+running = True
 while running:
     if show_init:
         draw_init()
-        show_init = False
-
+        show_init=False
     clock.tick(FPS)
+#取得輸入
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type ==pygame.QUIT:
             running = False
 
     pygame.display.update()
