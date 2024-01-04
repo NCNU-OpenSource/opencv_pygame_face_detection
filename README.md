@@ -21,9 +21,9 @@
 </ul>
 
 <h2><b>前置下載 (Installation) </b></h2>
-  <li><h3>python3</h3></li>
-  <li><h3>pygame</h3></li>
-  <li><h3>opencv</h3></li>
+  <h3>python3</h3>
+  <h3>pygame</h3>
+  <h3>opencv</h3>
 <h2><b>執行過程 (Implementation Process)<b></h2>
 <ul>
   <li><h3>程式碼</h3></li>
