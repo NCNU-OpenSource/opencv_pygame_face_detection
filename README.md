@@ -46,7 +46,7 @@
 ### 設定存放圖片的資料夾，如果該資料夾不存在，則創建一個
 ``` img_folder = 'webcam_pics' ```
 ``` if not os.path.exists(img_folder):
-        os.mkdir(img_folder) ```
+```        os.mkdir(img_folder) ```
 
 ### 設定 Pygame 中的按鈕和相關文字
 ``` font = pygame.font.Font('chinese.ttf', 48) ```
@@ -73,16 +73,16 @@
 ``` game_over = False ```
 
 ### 遊戲主迴圈，包含了遊戲未開始、開始和結束三種狀態的處理
-``` while run:
--     if not game_started and not game_over:
--         # 初始畫面和按鈕的顯示
--     for event in pygame.event.get():
--         # 處理事件，例如點擊按鈕、退出遊戲等
--     if game_started:
--         # 攝像頭迴圈
--         # 顯示視訊畫面和 Pygame 的畫面
--     if game_over:
--         # 遊戲結束後的處理
+``` while run: ```
+```     if not game_started and not game_over: ```
+```         # 初始畫面和按鈕的顯示 ```
+```     for event in pygame.event.get(): ```
+```         # 處理事件，例如點擊按鈕、退出遊戲等 ```
+```     if game_started: ```
+```         # 攝像頭迴圈 ```
+```         # 顯示視訊畫面和 Pygame 的畫面 ```
+```     if game_over: ```
+```         # 遊戲結束後的處理 ```
 
 ### 遊戲結束後的清理和顯示畫面
 ``` cap.release() ```
@@ -93,7 +93,6 @@
 ``` pygame.display.flip()  # 更新畫面 ```
 ``` pygame.time.wait(15000)  # 停留15秒顯示結果 ```
 ``` pygame.quit() ```
-
 ## 困難及未來展望
 ### 困難
 - OpenCV即將程式導入到樹梅派 使用上較不習慣，需要再多精進
