@@ -37,20 +37,24 @@
 ## 困難及未來展望
 ### 困難
 - OpenCV即將程式導入到樹梅派 使用上較不習慣，需要再多精進
+- 將pygame跟OpenCV的程式結合一直產生bug
 
 ## 工作分配 Job Assignment
 - 108213041 吳健瑋 
     - OpenCV
-    - 技術指導
+    - 程式撰寫
 - 110213061 黃士祐 
     - ppt製作 
-    - pygame 
+    - pygame
+    - 程式撰寫 
 - 110213062 黃聖軒
     - readme
-    - OpenCV 
+    - OpenCV
+    - 程式撰寫 
 - 110213073 張瑋倫 
     - pygame
     - pygame跟OpenCV程式結合
+    - 程式撰寫
 
 ## 參考資料 Reference
 
