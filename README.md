@@ -15,7 +15,7 @@
 
 ## Pygame
 - 使用pygame.init()初始化Pygame
-- 使用pygame.display.set_mode()创建一个窗口，设置窗口的宽度和高度。
+- 使用pygame.display.set_mode()創建一個窗口，设置窗口的寬度和高度。
 - screen = pygame.display.set_mode((640, 480)) # 建立視窗
 
 ## OpenCV
