@@ -87,7 +87,7 @@ num_faces = 0
 ### 遊戲結束後的清理和顯示畫面
 - cap.release()
 - screen.fill((255, 255, 255))
-- # 顯示自動截的圖片和 Winner 標題
+- 顯示自動截的圖片和 Winner 標題
 
 ### 更新 Pygame 視窗，等待 15 秒顯示遊戲結果，最後關閉 Pygame
 - pygame.display.flip()  # 更新畫面
