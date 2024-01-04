@@ -41,10 +41,10 @@ block_speed_y = 1
 run = True
 game_started = False
 start_time = 0
-
+game_over = False
 
 while run:
-    if not game_started:
+    if not game_started and not game_over:
         screen.fill((255, 255, 255))  # 白色背景
         text_rect_title = title_text.get_rect(center=(320, 100))
         screen.blit(title_text, text_rect_title)
@@ -101,6 +101,7 @@ while run:
 
             current_time = time.time()
             elapsed_time = current_time - start_time
+
             if elapsed_time >= 20:
                 green_box_area = frame[block_y:block_y + block_height, block_x:block_x + block_width]
 
@@ -114,6 +115,7 @@ while run:
                     print("Error, no green box area to save")
 
                 game_started = False  # 停止遊戲循環
+                game_over = True  # 遊戲結束
 
             # 顯示視訊畫面和 Pygame 的畫面
             pygame_frame = pygame.image.frombuffer(frame.tobytes(), frame.shape[1::-1], "BGR")
@@ -148,26 +150,26 @@ while run:
                             break  # 確保在退出後停止遊戲循環
 # 在遊戲迴圈結束後新增以下程式碼
 
-if not run:  # 確認是否要退出外層迴圈
-    cap.release()
+    if game_over:  # 確認是否要退出外層迴圈
+        cap.release()
 
-    # 畫面清空
-    screen.fill((255, 255, 255))
+        # 畫面清空
+        screen.fill((255, 255, 255))
 
-    # 顯示自動截的圖片和 Winner 標題
-    img_path = 'webcam_pics/_auto_capture.jpg'  # 更換為自動截圖的路徑
-    if os.path.exists(img_path):
-        img = pygame.image.load(img_path)
-        img_rect = img.get_rect()
-        img_rect.center = (320, 240)  # 圖片置中
-        screen.blit(img, img_rect)
+        # 顯示自動截的圖片和 Winner 標題
+        img_path = 'webcam_pics/_auto_capture.jpg'  # 更換為自動截圖的路徑
+        if os.path.exists(img_path):
+            img = pygame.image.load(img_path)
+            img_rect = img.get_rect()
+            img_rect.center = (320, 240)  # 圖片置中
+            screen.blit(img, img_rect)
 
-        # 加入 Winner 標題
-        font_winner = pygame.font.Font('chinese.ttf', 64)
-        winner_text = font_winner.render('Winner!!!', True, (0, 0, 0))
-        winner_rect = winner_text.get_rect(center=(320, 100))
-        screen.blit(winner_text, winner_rect)
+            # 加入 Winner 標題
+            font_winner = pygame.font.Font('chinese.ttf', 64)
+            winner_text = font_winner.render('Winner!!!', True, (0, 0, 0))
+            winner_rect = winner_text.get_rect(center=(320, 100))
+            screen.blit(winner_text, winner_rect)
 
-    pygame.display.flip()  # 更新畫面
-    pygame.time.wait(5000)  # 停留5秒顯示結果
-    pygame.quit()
+        pygame.display.flip()  # 更新畫面
+        pygame.time.wait(15000)  # 停留15秒顯示結果
+        pygame.quit()
