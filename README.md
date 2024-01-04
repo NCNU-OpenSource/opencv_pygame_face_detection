@@ -1,63 +1,60 @@
-# LSA_1121_group3
-<h1>卡位閃邊去</h1><br>
-<h2>動機發想 (Concept Development) </h2>
-  <h4>黃聖軒同學交不到女朋友，他希望能做一個有趣的遊戲，建立起他跟他朋友的友情，因此我們想了這個遊戲，讓他在跟他的朋友聯繫感情的時候，還可以拉近他們之間的距離，讓他們貼貼。
- </h4>
-  
-<h2><b>硬體設備 (Implementation Resources) </b></h2>
-<ul>
-  <li><h4>Raspberry pi 3</h4></li>
-</ul>
-
-<h2><b>軟體架構 (Existing Library/Software)</b></h2>
-<ul>
-
-  <li><h4>python3</h4></li>
-  <a target="_blank" href = "https://pypi.org/project/beautifulsoup4/">beautifulsoup4</a>
-  <a target="_blank" href = "https://selenium-python.readthedocs.io/">selenium</a>
-  <a target="_blank" href = "https://medium.com/marketingdatascience/selenium%E6%95%99%E5%AD%B8-%E4%B8%80-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8webdriver-send-keys-988816ce9bed/">selenium tutorial</a>
-  <a target="_blank" href = "https://blog.jiatool.com/posts/gemini_api/">google gemini ai tutorial</a>
-  
-</ul>
-
-<h2><b>前置下載 (Installation) </b></h2>
-  <h3>python3</h3>
-  <h3>pygame</h3>
-  <h3>opencv</h3>
-<h2><b>執行過程 (Implementation Process)<b></h2>
-<ul>
-  <li><h3>程式碼</h3></li>
-  <ul>
-
-  </ul>
-  
-  <li><h3>硬體準備</h3></li>
-  <ol>
-  </ol>
-  
-  <li><h3>場地布置</h3></li>
-  <ul>
-  </ul>
-</ul>
+# LSA_1121_group3-卡個位閃邊去
 
 
-<h2><b>Usage</b></h2>
+## 動機 Motivation
+- 最近幾個月在IG上看到有許多人在玩人臉辨識的遊戲，當下我們幾個人也藉著濾鏡玩了幾場，玩的不亦樂乎。這遊戲除了好玩外也是能跟朋友增進感情的方式，因此趁機利用這堂做出屬於我們自己的遊戲。為了做出遊戲須結合pygame及openCV以用來把遊戲帶進鏡頭裡。
 
-  
-<h2>心得反饋&遇到的困難</h2>
+## 玩法 Gameplay
+- 所有參與玩家須擠進鏡頭裡並嘗試將對方擠出鏡頭外，一段時間後會將畫面拍下，檢查那些人不在鏡頭裡就淘汰
 
-<h2>工作分配 (Job Assignment)</h2>
-<ul>
+## 應用資源 Implementation Resources
+- Pygame
+- OpenCV
+- chatgpt
+- python
 
-</ul>
+## Pygame
+- 使用pygame.init()初始化Pygame
+- 使用pygame.display.set_mode()创建一个窗口，设置窗口的宽度和高度。
+- screen = pygame.display.set_mode((640, 480)) # 建立視窗
 
-<h2><b>善用所學 (Knowledge from Lecture) </b></h2>
-<ul>
-  <li>linux系統基本指令</li>
-</ul>
-  
-<h2>參考資料 (References)</h2>
-<ul>
-  <li><a target="_blank" href = ""></a></li>
+## OpenCV
+- 使用cv2.VideoCapture(0)打開攝像頭
+- cap = cv2.VideoCapture(0) # 打開攝像頭
+- 使用Haar級聯分類器(cv2.CascadeClassifier)加載人臉檢測模型。
+- face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-</ul>
+## 程式執行
+- 在主循環中，使用pygame.event.get()檢測Pygame事件，包括退出事件和鍵盤事件。
+- 使用cap.read()讀取攝像頭的幀。將幀轉換為灰度圖像，然後使用Haar級聯分類器檢測人臉，並在檢測到的人臉周圍繪製矩形。
+- 使用pygame.image.frombuffer()將OpenCV圖像轉換為Pygame表面。使用screen.blit()將Pygame表面繪製到屏幕上，然後使用pygame.display.flip()更新顯示。
+- 使用cv2.imwrite()保存整個幀和裁剪的人臉圖像。
+- 通過按下'C'鍵觸發保存圖像的事件。
+- 使用draw_text()函數在Pygame窗口上顯示文本。
+- 使用show_init和run變量來控制在初始化階段和主循環中的行為。
+
+
+## 困難及未來展望
+### 困難
+- OpenCV即將程式導入到樹梅派 使用上較不習慣，需要再多精進
+
+## 工作分配 Job Assignment
+- 108213041 吳健瑋 
+    - OpenCV
+    - 技術指導
+- 110213061 黃士祐 
+    - ppt製作 
+    - pygame 
+- 110213062 黃聖軒
+    - readme
+    - OpenCV 
+- 110213073 張瑋倫 
+    - pygame
+    - pygame跟OpenCV程式結合
+
+## 參考資料 Reference
+
+- https://hackmd.io/@Derek46518/HyZHsD0Qo
+- https://www.youtube.com/watch?v=61eX0bFAsYs
+- https://www.youtube.com/watch?v=xjrykYpaBBM
+- https://itecnote.com/tecnote/python-display-cv2-videocapture-image-inside-pygame-surface/
