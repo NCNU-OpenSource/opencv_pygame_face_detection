@@ -1,7 +1,7 @@
 # LSA_1121_group3
-<h1>AI Telegram Bot & 肯德基瘋狂星期四V我50</h1><br>
+<h1>卡位閃邊去</h1><br>
 <h2>動機發想 (Concept Development) </h2>
-  <h4>
+  <h4>製作一個小遊戲減少朋友之間的隔閡
  </h4>
   
 <h2><b>硬體設備 (Implementation Resources) </b></h2>
@@ -60,7 +60,3 @@
   <li><a target="_blank" href = ""></a></li>
 
 </ul>
-  
-
-  
-  
