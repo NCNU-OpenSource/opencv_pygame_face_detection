@@ -2,6 +2,8 @@ import pygame
 import cv2
 import os
 import datetime
+import random
+import time
 
 # 初始化 Pygame
 pygame.init()
@@ -29,8 +31,18 @@ exit_text = font.render('Exit', True, (0, 0, 0))
 font_title = pygame.font.Font('chinese.ttf', 64)
 title_text = font_title.render('卡個位閃邊去', True, (0, 0, 0))
 
+# 綠色方塊的相關變數
+block_width, block_height = 450, 360
+block_x = random.randint(0, 640 - block_width)
+block_y = random.randint(0, 480 - block_height)
+block_speed_x = 1
+block_speed_y = 1
+
 run = True
 game_started = False
+start_time = 0
+
+
 while run:
     if not game_started:
         screen.fill((255, 255, 255))  # 白色背景
@@ -57,6 +69,7 @@ while run:
 
     if game_started:
         cap = cv2.VideoCapture(0)
+        start_time = time.time()
         while game_started:
             ret, frame = cap.read()
             h, w = frame.shape[:2]
@@ -72,38 +85,89 @@ while run:
             for (x, y, w, h) in faces:
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
+            # 繪製綠色方塊
+            block_x += block_speed_x
+            block_y += block_speed_y
+
+            if block_x <= 0 or block_x >= 640 - block_width:
+                block_speed_x *= -1
+            if block_y <= 0 or block_y >= 480 - block_height:
+                block_speed_y *= -1
+
+            frame[block_y:block_y + 2, block_x:block_x + block_width] = [0, 255, 0]  # 上邊框
+            frame[block_y + block_height - 2:block_y + block_height, block_x:block_x + block_width] = [0, 255, 0]  # 下邊框
+            frame[block_y:block_y + block_height, block_x:block_x + 2] = [0, 255, 0]  # 左邊框
+            frame[block_y:block_y + block_height, block_x + block_width - 2:block_x + block_width] = [0, 255, 0]  # 右邊框
+
+            current_time = time.time()
+            elapsed_time = current_time - start_time
+            if elapsed_time >= 20:
+                green_box_area = frame[block_y:block_y + block_height, block_x:block_x + block_width]
+
+                if green_box_area is not None:
+                    now = datetime.datetime.now()
+                    filename =  '_auto_capture.jpg'
+                    img_path = os.path.join(img_folder, filename)
+                    cv2.imwrite(img_path, green_box_area)
+                    print("Automatic picture taken at: " + img_path)
+                else:
+                    print("Error, no green box area to save")
+
+                game_started = False  # 停止遊戲循環
+
+            # 顯示視訊畫面和 Pygame 的畫面
             pygame_frame = pygame.image.frombuffer(frame.tobytes(), frame.shape[1::-1], "BGR")
             screen.blit(pygame_frame, (0, 0))
             pygame.display.flip()
-
             now = datetime.datetime.now()
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_c:
-                        if frame is None:
-                            print("Error, no webcam frame to save")
-                        else:
-                            filename = now.strftime('%Y%m%d_%H%M%S') + '.jpg'
+                        # 取得綠色方塊範圍內的圖片
+                        green_box_area = frame[block_y:block_y + block_height, block_x:block_x + block_width]
+
+                        if green_box_area is not None:
+                            # 將圖片儲存到指定資料夾
+                            now = datetime.datetime.now()
+                            filename = '_green_box.jpg'
                             img_path = os.path.join(img_folder, filename)
-                            number_faces = len(num_faces)
-                            print(f"Number of faces detected: {number_faces}")
-                            cv2.imwrite(img_path, frame)
-                            print("picture taken sucess \n " + img_path)
+                            cv2.imwrite(img_path, green_box_area)
+                            print("Green box area image saved at: " + img_path)
+                        else:
+                            print("Error, no green box area to save")
 
                             for (x, y, w, h) in faces:
                                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
                                 face_roi = frame[y:y + h, x:x + w]
-                                filename = now.strftime('%Y%m%d_%H%M%S') + '_cropped.jpg'
+                                filename = '_cropped.jpg'
                                 img_path = os.path.join(img_folder, filename)
                                 cv2.imwrite(img_path, face_roi)
                                 print("cropped image saved \n " + img_path)
 
                             game_started = False  # 停止遊戲循環
                             break  # 確保在退出後停止遊戲循環
+# 在遊戲迴圈結束後新增以下程式碼
 
-            if not run:  # 確認是否要退出外層迴圈
-                break
+if not run:  # 確認是否要退出外層迴圈
+    cap.release()
 
-        cap.release()
+    # 畫面清空
+    screen.fill((255, 255, 255))
 
-pygame.quit()
+    # 顯示自動截的圖片和 Winner 標題
+    img_path = 'webcam_pics/_auto_capture.jpg'  # 更換為自動截圖的路徑
+    if os.path.exists(img_path):
+        img = pygame.image.load(img_path)
+        img_rect = img.get_rect()
+        img_rect.center = (320, 240)  # 圖片置中
+        screen.blit(img, img_rect)
+
+        # 加入 Winner 標題
+        font_winner = pygame.font.Font('chinese.ttf', 64)
+        winner_text = font_winner.render('Winner!!!', True, (0, 0, 0))
+        winner_rect = winner_text.get_rect(center=(320, 100))
+        screen.blit(winner_text, winner_rect)
+
+    pygame.display.flip()  # 更新畫面
+    pygame.time.wait(5000)  # 停留5秒顯示結果
+    pygame.quit()
