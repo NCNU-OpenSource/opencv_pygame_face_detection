@@ -24,13 +24,43 @@
 - face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 ## 程式執行
-- 在主循環中，使用pygame.event.get()檢測Pygame事件，包括退出事件和鍵盤事件。
-- 使用cap.read()讀取攝像頭的幀。將幀轉換為灰度圖像，然後使用Haar級聯分類器檢測人臉，並在檢測到的人臉周圍繪製矩形。
-- 使用pygame.image.frombuffer()將OpenCV圖像轉換為Pygame表面。使用screen.blit()將Pygame表面繪製到屏幕上，然後使用pygame.display.flip()更新顯示。
-- 使用cv2.imwrite()保存整個幀和裁剪的人臉圖像。
-- 通過按下'C'鍵觸發保存圖像的事件。
-- 使用draw_text()函數在Pygame窗口上顯示文本。
-- 使用show_init和run變量來控制在初始化階段和主循環中的行為。
+### 初始化
+
+- 初始化 Pygame。
+- 創建 Pygame 視窗和設定標題。
+
+### 設定 Cascade Classifier：
+
+- 使用 OpenCV 的 haarcascade_frontalface_default.xml 來檢測人臉。
+
+### 設定遊戲初始狀態和按鈕：
+
+- 設定遊戲狀態的變數，例如遊戲是否開始、是否結束等。
+- 創建 Pygame 中的按鈕和相關文字。
+
+### 主遊戲迴圈：
+
+- 在遊戲未開始和未結束時，顯示初始畫面和按鈕。
+- 使用滑鼠事件檢測是否按下了 "Start" 或 "Exit" 按鈕，根據按下的按鈕進行相應的處理。
+
+### 攝像頭迴圈：
+
+- 當遊戲開始時，進入攝像頭迴圈。
+- 每一個迴圈中讀取攝像頭畫面，並使用 Haar 级聯分類器檢測人臉。
+- 同時，移動並畫出綠色方塊，確保方塊在視窗內來回移動。
+- 在指定的時間內（20秒）自動截取綠色方塊區域的畫面。
+
+### 遊戲結束後的處理：
+
+- 釋放攝像頭資源。
+- 清空 Pygame 視窗。
+- 顯示自動截取的畫面和 "Winner!!!" 標題。
+- 更新 Pygame 視窗。
+
+### 顯示結果並等待一段時間：
+
+- 等待 15 秒，顯示遊戲結果。
+- 關閉 Pygame 視窗。。
 
 
 ## 困難及未來展望
