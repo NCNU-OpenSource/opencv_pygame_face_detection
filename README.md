@@ -41,20 +41,20 @@
 
 ## 工作分配 Job Assignment
 - 108213041 吳健瑋
--   OpenCV
--   程式撰寫
+  -  OpenCV
+  -   程式撰寫
 - 110213061 黃士祐
--   ppt製作
--   pygame
--   程式撰寫
+  -   ppt製作
+  -   pygame
+  -   程式撰寫
 - 110213062 黃聖軒
--   readme
--   OpenCV
--   程式撰寫
+  -   readme
+  -   OpenCV
+  -   程式撰寫
 - 110213073 張瑋倫
--   pygame
--   pygame跟OpenCV程式結合
--   程式撰寫
+  -   pygame
+  -   pygame跟OpenCV程式結合
+  -   程式撰寫
 
 ## 參考資料 Reference
 
