@@ -7,7 +7,14 @@ import time
 
 # 初始化 Pygame
 pygame.init()
+pygame.mixer.init()
+
 screen = pygame.display.set_mode((640, 480))
+
+
+# 載入背景音樂
+pygame.mixer.music.load('Audio Library 音樂庫 免費背景音樂下載 歌名 Marvins Dance 作者 Silent Partner 開心音樂 Happy Music .MP3')
+pygame.mixer.music.play(-1)  # 播放背景音樂，-1 表示無限循環
 
 # 標題
 pygame.display.set_caption("卡個位閃邊去")
@@ -20,6 +27,10 @@ num_faces = 0
 img_folder = 'webcam_pics'
 if not os.path.exists(img_folder):
     os.mkdir(img_folder)
+
+# 載入初始介面的背景圖片
+initial_screen_background = pygame.image.load('th.JPEG')  # 替換為您的初始介面背景圖片路徑
+initial_screen_background = pygame.transform.scale(initial_screen_background, (640, 480))  # 调整图像大小以适应屏幕    
 
 # 初始畫面
 font = pygame.font.Font('chinese.ttf', 48)
@@ -44,18 +55,6 @@ start_time = 0
 game_over = False
 
 while run:
-    if not game_started and not game_over:
-        screen.fill((255, 255, 255))  # 白色背景
-        text_rect_title = title_text.get_rect(center=(320, 100))
-        screen.blit(title_text, text_rect_title)
-        pygame.draw.rect(screen, (0, 0, 255), start_button)
-        text_rect_start = start_text.get_rect(center=start_button.center)
-        screen.blit(start_text, text_rect_start)
-        pygame.draw.rect(screen, (0, 0, 255), exit_button)
-        text_rect_exit = exit_text.get_rect(center=exit_button.center)
-        screen.blit(exit_text, text_rect_exit)
-        pygame.display.update()
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -66,6 +65,24 @@ while run:
             elif exit_button.collidepoint(event.pos):
                 run = False
                 game_started = False  # 確保攝像頭迴圈也會停止
+
+    # 將初始介面背景圖片填充到整個屏幕
+    screen.blit(initial_screen_background, (0, 0))     
+
+    if not game_started and not game_over:
+        text_rect_title = title_text.get_rect(center=(320, 100))
+        screen.blit(title_text, text_rect_title)
+        pygame.draw.rect(screen, (0, 0, 255), start_button)
+        text_rect_start = start_text.get_rect(center=start_button.center)
+        screen.blit(start_text, text_rect_start)
+        pygame.draw.rect(screen, (0, 0, 255), exit_button)
+        text_rect_exit = exit_text.get_rect(center=exit_button.center)
+        screen.blit(exit_text, text_rect_exit)
+        pygame.display.update()
+
+    pygame.display.flip()
+
+    
 
     if game_started:
         cap = cv2.VideoCapture(0)
@@ -172,4 +189,5 @@ while run:
 
         pygame.display.flip()  # 更新畫面
         pygame.time.wait(15000)  # 停留15秒顯示結果
+        pygame.mixer.music.stop()  # 停止背景音樂
         pygame.quit()
