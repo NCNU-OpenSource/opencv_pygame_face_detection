@@ -26,6 +26,10 @@
 
 ## 程式執行
 1. 導入需要的庫：pygame 用於遊戲開發，cv2 用於視訊處理，os 用於檔案和目錄操作，datetime 用於處理日期和時間，random 用於產生隨機數，time 用於計時
+- sudo apt-get update
+sudo apt-get install python3-opencv
+sudo apt-get install python3-pip
+pip install pygame`
 - ` import pygame `
 - ` import cv2 `
 - ` import os `
