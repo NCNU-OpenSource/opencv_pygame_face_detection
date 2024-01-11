@@ -171,8 +171,8 @@
 - 感謝助教們跟BlueT，辛苦了
 
 ## 參考資料 Reference
-- bg.jpg source`https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.backgroundlelo.com%2Fsnapseed-background-hd-4k-for-editing-download%2F&psig=AOvVaw00dEkhCvu_KNloM9zfBLPH&ust=1705055276263000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKiMk4KQ1YMDFQAAAAAdAAAAABAD`
--Music by <a href="https://pixabay.com/users/top-flow-production-28521292/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=181126">Sergio Prosvirini</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=181126">Pixabay</a>
+- bg.jpg <a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.backgroundlelo.com%2Fsnapseed-background-hd-4k-for-editing-download%2F&psig=AOvVaw00dEkhCvu_KNloM9zfBLPH&ust=1705055276263000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKiMk4KQ1YMDFQAAAAAdAAAAABAD">source</a>
+- Music by <a href="https://pixabay.com/users/top-flow-production-28521292/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=181126">Sergio Prosvirini</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=181126">Pixabay</a>
 - https://hackmd.io/@Derek46518/HyZHsD0Qo
 - https://www.youtube.com/watch?v=61eX0bFAsYs
 - https://www.youtube.com/watch?v=xjrykYpaBBM
