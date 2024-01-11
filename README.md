@@ -167,7 +167,7 @@
 
 ## 特別感謝
 - 感謝助教柏瑋借我們無敵電腦
-- 感謝 ivy rita ray 激發我們想法
+- 感謝 Ivy Rita Ray 激發我們想法
 - 感謝助教們跟BlueT，辛苦了
 
 ## 參考資料 Reference
