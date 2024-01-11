@@ -14,6 +14,14 @@
 - python
 - ubuntu
 
+## 在ubuntu要先設置的環境
+- `sudo apt-get update`
+- `sudo apt-get install python3-opencv`
+- `sudo apt-get install python3-pip`
+- `pip install pygame`
+
+## 程式執行
+
 ## Pygame
 - 使用pygame.init()初始化Pygame
 - 使用pygame.display.set_mode()創建一個窗口，設置窗口的寬度和高度。
@@ -25,13 +33,7 @@
 - 使用Haar級聯分類器(cv2.CascadeClassifier)加載人臉檢測模型。
 - face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-## 在ubuntu要先設置的環境
-- `sudo apt-get update`
-- `sudo apt-get install python3-opencv`
-- `sudo apt-get install python3-pip`
-- `pip install pygame`
-## 程式執行
-1. 導入需要的庫：pygame 用於遊戲開發，cv2 用於視訊處理，os 用於檔案和目錄操作，datetime 用於處理日期和時間，random 用於產生隨機數，time 用於計時
+1. 導入需要的工具：pygame 用於遊戲開發，cv2 用於視訊處理，os 用於檔案和目錄操作，datetime 用於處理日期和時間，random 用於產生隨機數，time 用於計時
 - ` import pygame `
 - ` import cv2 `
 - ` import os `
