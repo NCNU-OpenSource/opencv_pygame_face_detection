@@ -40,48 +40,70 @@
 - ` import datetime `
 - ` import random `
 - ` import time `
+  
+2.載入背景音樂
+- `pygame.mixer.music.load('music.MP3')`
+- `pygame.mixer.music.play(-1)`
+- 
+3.載入初始介面的背景圖片
+- `initial_screen_background = pygame.image.load('bg.JPG')`
+- `initial_screen_background = pygame.transform.scale(initial_screen_background, (640, 480))`
+- 
+4.做一個進度條
+- `def init_progressbar(screen, x, y, width, height, progress):`
+- `    """Initialize the progress bar on the screen"""`
+- `    pygame.draw.rect(screen, (36,120,210), (x, y, width, height), 0)`
+- `    progress_width = int(progress * width)`
+- `    pygame.draw.rect(screen, (255,255,255), (x, y, progress_width, height))`
 
-2. 初始化 Pygame 和設定視窗大小為 640x480
+- `def update_progressbar(screen, x, y, width, height, progress):`
+- `    """Update the progress bar to the new progress amount"""`
+- `    init_progressbar(screen, x, y, width, height, 0) # clear `
+- `    progress_width = int(progress * width)`  
+- `    pygame.draw.rect(screen, (255,255,255), (x, y, progress_width, height))`
+- `    pygame.display.update()`
+
+5. 初始化 Pygame 和設定視窗大小為 640x480
 - ` pygame.init() `
 - ` screen = pygame.display.set_mode((640, 480)) `
 
-3. 設定視窗標題為 "卡個位閃邊去"。
+6. 設定視窗標題為 "卡個位閃邊去"。
 - ` pygame.display.set_caption("卡個位閃邊去") `
 
-4. 設定 Haar 级聯分類器用於偵測人臉，並初始化人臉數目的變數
+7. 設定 Haar 级聯分類器用於偵測人臉，並初始化人臉數目的變數
 - ` face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml') `
 - ` num_faces = 0 `
 
-5. 設定存放圖片的資料夾，如果該資料夾不存在，則創建一個
+8. 設定存放圖片的資料夾，如果該資料夾不存在，則創建一個
 - ` img_folder = 'webcam_pics' `
 - ` if not os.path.exists(img_folder): `
 - `       os.mkdir(img_folder) `
 
-6. 設定 Pygame 中的按鈕和相關文字
+9. 設定 Pygame 中的按鈕和相關文字
 - ` font = pygame.font.Font('chinese.ttf', 48) `
 - ` start_button = pygame.Rect(220, 200, 200, 50) `
 - ` start_text = font.render('Start', True, (0, 0, 0)) `
 - ` exit_button = pygame.Rect(220, 300, 200, 50) `
 - ` exit_text = font.render('Exit', True, (0, 0, 0)) `
 
-7. 設定遊戲標題文字
+10. 設定遊戲標題文字
 - ` font_title = pygame.font.Font('chinese.ttf', 64) `
 - ` title_text = font_title.render('卡個位閃邊去', True, (0, 0, 0)) `
 
-8. 設定綠色方塊的相關變數
+11. 設定綠色方塊的相關變數
 - ` block_width, block_height = 450, 360 `
 - ` block_x = random.randint(0, 640 - block_width) `
 - ` block_y = random.randint(0, 480 - block_height) `
 - `  block_speed_x = 1 `
 - ` block_speed_y = 1 `
 
-9. 初始化遊戲控制的變數
+12. 初始化遊戲控制的變數
 - ` run = True `
 - ` game_started = False `
 - ` start_time = 0 `
 - ` game_over = False `
 
-10. 遊戲主迴圈，包含了遊戲未開始、開始和結束三種狀態的處理
+13. 遊戲主迴圈，包含了遊戲未開始、開始和結束三種狀態的處理
 - ` while run: `
 - `     if not game_started and not game_over: `
 - `         # 初始畫面和按鈕的顯示 `
@@ -93,14 +115,15 @@
 - `     if game_over: `
 - `         # 遊戲結束後的處理 `
 
-11. 遊戲結束後的清理和顯示畫面
+14. 遊戲結束後的清理和顯示畫面
 - ` cap.release() `
 - ` screen.fill((255, 255, 255)) `
 - ` # 顯示自動截的圖片和 Winner 標題 `
 
-12. 更新 Pygame 視窗，等待 15 秒顯示遊戲結果，最後關閉 Pygame
+15. 更新 Pygame 視窗，等待 15 秒顯示遊戲結果，最後關閉 Pygame
 - ` pygame.display.flip()  # 更新畫面 `
 - ` pygame.time.wait(15000)  # 停留15秒顯示結果 `
+- `pygame.mixer.music.stop()  # 停止背景音樂`
 - ` pygame.quit() `
 
 ## 困難及未來展望
