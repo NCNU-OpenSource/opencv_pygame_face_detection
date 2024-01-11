@@ -21,6 +21,8 @@
 - `pip install pygame`
 
 ## 程式執行
+- required files "bg.jpg, music.mp3, chinese.ttf, combine.py"
+- `python3 combine.py` 
 
 ## Pygame
 - 使用pygame.init()初始化Pygame
@@ -28,9 +30,9 @@
 - screen = pygame.display.set_mode((640, 480)) # 建立視窗
 
 ## OpenCV
-- 使用cv2.VideoCapture(0)打開攝像頭
-- cap = cv2.VideoCapture(0) # 打開攝像頭
-- 使用Haar級聯分類器(cv2.CascadeClassifier)加載人臉檢測模型。
+- 使用cv2.VideoCapture(0)打開camera
+- cap = cv2.VideoCapture(0) # 打開camera
+- 使用Haar級聯分類器(cv2.CascadeClassifier)載入人臉檢測模型。
 - face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 1. 導入需要的工具：pygame 用於遊戲開發，cv2 用於視訊處理，os 用於檔案和目錄操作，datetime 用於處理日期和時間，random 用於產生隨機數，time 用於計時
