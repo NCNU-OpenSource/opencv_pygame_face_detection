@@ -22,6 +22,41 @@
 
 ## 遊戲程式執行
 - 開始遊戲時的初始畫面
+<img width="481" alt="螢幕擷取畫面 2024-01-18 190132" src="https://github.com/NCNU-OpenSource/opencv_pygame_face_detection/assets/152016407/7e5eaae7-9240-4523-94ec-af2cdaaf56c1">
+
+- 設定遊戲介面按鈕
+
+<img width="479" alt="image" src="https://github.com/NCNU-OpenSource/opencv_pygame_face_detection/assets/152016407/4cde38fa-95e2-43f2-a8e4-2e16386ada59">
+ 
+- 進入到遊戲初始畫面後會撥出聲音，音樂來源是YouTube音樂庫 無版權配樂 免費背景音樂下載: https://goo.gl/Z6TsBI
+- 載入背景圖
+<img width="883" alt="image" src="https://github.com/NCNU-OpenSource/opencv_pygame_face_detection/assets/152016407/d49fd141-9fb5-4aa4-8890-a7bc0f104956">
+
+- 點擊start後會開始臉部偵測
+<img width="586" alt="螢幕擷取畫面 2024-01-11 182053" src="https://github.com/NCNU-OpenSource/opencv_pygame_face_detection/assets/152016407/1f3a9c92-fbea-4095-9283-5a908ea0ebb4">
+
+- 製作一個綠色方框去限制玩家跟著移動
+<img width="523" alt="image" src="https://github.com/NCNU-OpenSource/opencv_pygame_face_detection/assets/152016407/add6fe0e-1ccd-4814-afec-3d93e4de3780">
+
+- 做一個時間條讓玩家知道說時間還剩多久
+<img width="546" alt="image" src="https://github.com/NCNU-OpenSource/opencv_pygame_face_detection/assets/152016407/09158b2f-0472-49e4-8fe3-ab43a6508ea9">
+
+- 遊戲時間結束並出現贏家
+<img width="503" alt="螢幕擷取畫面 2024-01-11 182203" src="https://github.com/NCNU-OpenSource/opencv_pygame_face_detection/assets/152016407/d56b437d-df04-4c38-ae8a-7220f75fe262">
+
+- 標題會跑出winner並自動儲存圖片到webcame_pics這個資料夾裡面
+<img width="485" alt="image" src="https://github.com/NCNU-OpenSource/opencv_pygame_face_detection/assets/152016407/308c5c1f-8577-4653-9d9b-3d9bc0238b9b">
+
+<img width="879" alt="螢幕擷取畫面 2024-01-18 192900" src="https://github.com/NCNU-OpenSource/opencv_pygame_face_detection/assets/152016407/7e3c7edf-948c-4b03-8303-2b676bc4eb14">
+
+
+
+
+
+
+
+
+
 
 ## 困難及未來展望
 ### 困難
